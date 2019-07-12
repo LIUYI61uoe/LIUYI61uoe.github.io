@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="链表定义：是一种递归的数据结构，它或者为空，或者是指向一个node的引用，该结点还有一个元素和指向另一条链表的引用。（结点+指向下一个node的指针） 链表特点： 最后一个节点的next指向null。 与数组不同，不需要new出一块空间，所以不用考虑空间不足和浪费的问题。 需要多少，就会生成多少挂接起来。因此，链表具有动态的能力，不需要处理固定容量的问题但是，由于动态的能力，确实了高效的随机访问（">
+<meta name="keywords" content="hello">
+<meta property="og:type" content="article">
+<meta property="og:title" content="链表">
+<meta property="og:url" content="http://yoursite.com/2019/07/10/链表/index.html">
+<meta property="og:site_name" content="LIU YI">
+<meta property="og:description" content="链表定义：是一种递归的数据结构，它或者为空，或者是指向一个node的引用，该结点还有一个元素和指向另一条链表的引用。（结点+指向下一个node的指针） 链表特点： 最后一个节点的next指向null。 与数组不同，不需要new出一块空间，所以不用考虑空间不足和浪费的问题。 需要多少，就会生成多少挂接起来。因此，链表具有动态的能力，不需要处理固定容量的问题但是，由于动态的能力，确实了高效的随机访问（">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-11T09:27:19.343Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="链表">
+<meta name="twitter:description" content="链表定义：是一种递归的数据结构，它或者为空，或者是指向一个node的引用，该结点还有一个元素和指向另一条链表的引用。（结点+指向下一个node的指针） 链表特点： 最后一个节点的next指向null。 与数组不同，不需要new出一块空间，所以不用考虑空间不足和浪费的问题。 需要多少，就会生成多少挂接起来。因此，链表具有动态的能力，不需要处理固定容量的问题但是，由于动态的能力，确实了高效的随机访问（">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/10/链表/">
+
+
+
+
+
+  <title>链表 | LIU YI</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LIU YI</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/链表/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LIUYI">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LIU YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">链表</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-10T15:00:41+01:00">
+                2019-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="链表定义："><a href="#链表定义：" class="headerlink" title="链表定义："></a>链表定义：</h2><p>是一种递归的数据结构，它或者为空，或者是指向一个node的引用，该结点还有一个元素和指向另一条链表的引用。（结点+指向下一个node的指针）</p>
+<h2 id="链表特点："><a href="#链表特点：" class="headerlink" title="链表特点："></a>链表特点：</h2><ol>
+<li>最后一个节点的next指向null。</li>
+<li>与数组不同，不需要new出一块空间，所以不用考虑空间不足和浪费的问题。</li>
+<li>需要多少，就会生成多少挂接起来。<br>因此，<strong>链表具有动态的能力，不需要处理固定容量的问题</strong><br>但是，由于动态的能力，确实了高效的随机访问（random access ）的能力。也就是不能像数组一样通过index 来访问对应的元素。链表靠next链接，每个节点的存储地址都不同，我们只能用next来找到自己要找的元素。所以，增删改查操作的复杂度都是O（n）,数组是O（1）</li>
+</ol>
+<p>插入node：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">insertNode.next = prevNode.next</span><br><span class="line">prevNode.next = insertNode</span><br></pre></td></tr></table></figure>
+
+<p>删除node：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">prevNode.next = delNode.next</span><br><span class="line">delNode.next = null</span><br></pre></td></tr></table></figure>
+
+<h2 id="链表相关问题："><a href="#链表相关问题：" class="headerlink" title="链表相关问题："></a>链表相关问题：</h2><h3 id="反转链表："><a href="#反转链表：" class="headerlink" title="反转链表："></a>反转链表：</h3><p>输入一个链表，反转链表后，输出链表的表头。</p>
+<p>思路：现在的node去指向前一个Node，后面的Node指向前面的Node，知道最后一个Node：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">ReverseList</span><span class="params">(self,pHead)</span>:</span></span><br><span class="line">    pReverseHead = <span class="literal">None</span></span><br><span class="line">    pNode = pHead</span><br><span class="line">    pPrev = <span class="literal">None</span></span><br><span class="line">    <span class="keyword">while</span>  pNode:</span><br><span class="line">      pNext = pNode.next</span><br><span class="line">      <span class="keyword">if</span> <span class="keyword">not</span> pNext:</span><br><span class="line">        pReverseHead = pNode</span><br><span class="line">      pNode.next = pPrev</span><br><span class="line">      pPrev = pNode</span><br><span class="line">      pNode = pNext</span><br><span class="line">    <span class="keyword">return</span> pReverseHead</span><br></pre></td></tr></table></figure>
+
+<h3 id="链表中环的入口结点："><a href="#链表中环的入口结点：" class="headerlink" title="链表中环的入口结点："></a>链表中环的入口结点：</h3><p>在一个链表中，若有环，输出环的入口结点，否则输出null。</p>
+<p>思路：一个fast指针一次移动两个结点，一个slow指针一次移动一个结点。因为有环所以两个必定相遇。相遇之后，fast从头结点出发变为一次一步，slow和fast会在环入口相遇。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">EntryNodeOfLoop</span><span class="params">(self, pHead)</span>:</span></span><br><span class="line">        <span class="comment"># write code here</span></span><br><span class="line">        <span class="comment">#fast一次走2步，slow一次走一步，如果该链表有环，两个指针必然在环内相遇</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> pHead <span class="keyword">or</span> pHead.next == <span class="literal">None</span> <span class="keyword">or</span> pHead.next.next==<span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        slow = pHead.next</span><br><span class="line">        fast = pHead.next.next</span><br><span class="line">        <span class="keyword">while</span> slow!= fast:</span><br><span class="line">            <span class="keyword">if</span> fast.next == <span class="literal">None</span> <span class="keyword">or</span> fast.next.next ==<span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">            slow = slow.next</span><br><span class="line">            fast = fast.next.next</span><br><span class="line">            <span class="comment">#此时只需要把其中的一个指针重新指向链表头部，另一个不变（还在环内），</span></span><br><span class="line">            <span class="comment">#这次两个指针一次走一步，相遇的地方就是入口节点。</span></span><br><span class="line">        fast = pHead</span><br><span class="line">        <span class="keyword">while</span> slow!=fast:</span><br><span class="line">            slow = slow.next</span><br><span class="line">            fast = fast.next</span><br><span class="line">        <span class="keyword">return</span> fast</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除链表中的重复结点："><a href="#删除链表中的重复结点：" class="headerlink" title="删除链表中的重复结点："></a>删除链表中的重复结点：</h3><p>在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5 处理后为 1-&gt;2-&gt;5</p>
+<p>思路： 有重复就跳过，对后面的node进行递归去重。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">deleteDuplication</span><span class="params">(self, pHead)</span>:</span></span><br><span class="line">        <span class="comment"># write code here</span></span><br><span class="line">        <span class="keyword">if</span> pHead ==<span class="literal">None</span> <span class="keyword">or</span> pHead.next==<span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> pHead</span><br><span class="line">        head = pHead.next</span><br><span class="line">        <span class="keyword">if</span> head.val!= pHead.val:</span><br><span class="line">            pHead.next = self.deleteDuplication(pHead.next)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">while</span> pHead.val == head.val <span class="keyword">and</span> head.next:</span><br><span class="line">                head = head.next</span><br><span class="line">            <span class="keyword">if</span> head.val != pHead.val:</span><br><span class="line">                pHead = self.deleteDuplication(head)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        <span class="keyword">return</span> pHead</span><br></pre></td></tr></table></figure>
+
+<h3 id="链表中倒数第K个结点："><a href="#链表中倒数第K个结点：" class="headerlink" title="链表中倒数第K个结点："></a>链表中倒数第K个结点：</h3><p>输入一个链表，输出该链表中倒数第k个结点。</p>
+<p>思路：两个指针，P1移动K个结点，所以还剩下N-K个结点，这时候P2从头结点出发，P1到达最后一个结点时候，P2正好也走了N-K个结点，也就是倒数第K个。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">FindKthToTail</span><span class="params">(self, head, k)</span>:</span></span><br><span class="line">        <span class="comment"># write code here</span></span><br><span class="line">        <span class="keyword">if</span> k&lt;=<span class="number">0</span> <span class="keyword">or</span> <span class="keyword">not</span> head:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        p1 = head</span><br><span class="line">        p2 = head</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(k<span class="number">-1</span>):</span><br><span class="line">            <span class="keyword">if</span> p1.next != <span class="literal">None</span>:</span><br><span class="line">                p1=p1.next</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        <span class="keyword">while</span> p1.next:</span><br><span class="line">            p1 = p1.next</span><br><span class="line">            p2 = p2.next</span><br><span class="line">        <span class="keyword">return</span> p2</span><br></pre></td></tr></table></figure>
+
+<h3 id="合并两个排序的链表："><a href="#合并两个排序的链表：" class="headerlink" title="合并两个排序的链表："></a>合并两个排序的链表：</h3><p>输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。</p>
+<p>思路：递归</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># 返回合并后列表</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Merge</span><span class="params">(self, pHead1, pHead2)</span>:</span></span><br><span class="line">        <span class="comment"># write code here</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> pHead1:</span><br><span class="line">            <span class="keyword">return</span> pHead2</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> pHead2:</span><br><span class="line">            <span class="keyword">return</span> pHead1</span><br><span class="line">        <span class="keyword">if</span> pHead1.val&lt;= pHead2.val:</span><br><span class="line">            pMergeHead = pHead1</span><br><span class="line">            pMergeHead.next = self.Merge(pHead1.next,pHead2)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            pMergeHead = pHead2</span><br><span class="line">            pMergeHead.next = self.Merge(pHead1,pHead2.next)</span><br><span class="line">        <span class="keyword">return</span> pMergeHead</span><br></pre></td></tr></table></figure>
+
+<h3 id="两个链表的第一个公共结点："><a href="#两个链表的第一个公共结点：" class="headerlink" title="两个链表的第一个公共结点："></a>两个链表的第一个公共结点：</h3><p>输入两个链表，找出它们的第一个公共结点。</p>
+<p>思路：两个链表分别放入栈，每次同时弹出一个，最后一个相同的结点就是第一个公共结点。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">FindFirstCommonNode</span><span class="params">(self, pHead1, pHead2)</span>:</span></span><br><span class="line">        <span class="comment"># write code here</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> pHead1 <span class="keyword">or</span> <span class="keyword">not</span> pHead2:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        stack1=[]</span><br><span class="line">        stack2=[]</span><br><span class="line">        first = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">while</span> pHead1:</span><br><span class="line">            stack1.append(pHead1)</span><br><span class="line">            pHead1 = pHead1.next</span><br><span class="line">        <span class="keyword">while</span> pHead2:</span><br><span class="line">            stack2.append(pHead2)</span><br><span class="line">            pHead2 = pHead2.next</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">while</span> stack1 <span class="keyword">and</span> stack2:</span><br><span class="line">            top1 = stack1.pop()</span><br><span class="line">            top2 = stack2.pop()</span><br><span class="line">            <span class="keyword">if</span> top1 == top2:</span><br><span class="line">                first=top1</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> first</span><br></pre></td></tr></table></figure>
+
+<h3 id="二叉搜索树与双向链表："><a href="#二叉搜索树与双向链表：" class="headerlink" title="二叉搜索树与双向链表："></a>二叉搜索树与双向链表：</h3><p>输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。</p>
+<p>思路：二叉搜索树的特点：左结点&lt;根结点&lt;右结点。所以用中序遍历，就可排序。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Convert</span><span class="params">(self, pRootOfTree)</span>:</span></span><br><span class="line">        <span class="comment"># write code here</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> pRootOfTree:</span><br><span class="line">            <span class="keyword">return</span> </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> pRootOfTree.left <span class="keyword">and</span> <span class="keyword">not</span> pRootOfTree.right:</span><br><span class="line">            <span class="keyword">return</span> pRootOfTree</span><br><span class="line">        <span class="comment">#处理左子树</span></span><br><span class="line">        self.Convert(pRootOfTree.left)</span><br><span class="line">        left = pRootOfTree.left</span><br><span class="line">        <span class="comment">#连接根与左子树最大节点</span></span><br><span class="line">        <span class="keyword">if</span> left:</span><br><span class="line">            <span class="keyword">while</span>(left.right):</span><br><span class="line">                left = left.right</span><br><span class="line">            pRootOfTree.left,left.right = left,pRootOfTree</span><br><span class="line">            </span><br><span class="line">        self.Convert(pRootOfTree.right)</span><br><span class="line">        right = pRootOfTree.right</span><br><span class="line">          </span><br><span class="line">        <span class="keyword">if</span> right:</span><br><span class="line">            <span class="keyword">while</span>(right.left):</span><br><span class="line">                right = right.left</span><br><span class="line">            pRootOfTree.right,right.left = right,pRootOfTree</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (pRootOfTree.left):</span><br><span class="line">            pRootOfTree = pRootOfTree.left</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> pRootOfTree</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/04/递归与动态规划/" rel="next" title="递归与动态规划">
+                <i class="fa fa-chevron-left"></i> 递归与动态规划
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/11/栈/" rel="prev" title="栈">
+                栈 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">LIUYI</p>
+              <p class="site-description motion-element" itemprop="description">Kind but not weak.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/LIUYI61uoe" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:s1806352@ed.ac.uk" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#链表定义："><span class="nav-number">1.</span> <span class="nav-text">链表定义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链表特点："><span class="nav-number">2.</span> <span class="nav-text">链表特点：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链表相关问题："><span class="nav-number">3.</span> <span class="nav-text">链表相关问题：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反转链表："><span class="nav-number">3.1.</span> <span class="nav-text">反转链表：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链表中环的入口结点："><span class="nav-number">3.2.</span> <span class="nav-text">链表中环的入口结点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除链表中的重复结点："><span class="nav-number">3.3.</span> <span class="nav-text">删除链表中的重复结点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链表中倒数第K个结点："><span class="nav-number">3.4.</span> <span class="nav-text">链表中倒数第K个结点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合并两个排序的链表："><span class="nav-number">3.5.</span> <span class="nav-text">合并两个排序的链表：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两个链表的第一个公共结点："><span class="nav-number">3.6.</span> <span class="nav-text">两个链表的第一个公共结点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉搜索树与双向链表："><span class="nav-number">3.7.</span> <span class="nav-text">二叉搜索树与双向链表：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LIUYI</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
