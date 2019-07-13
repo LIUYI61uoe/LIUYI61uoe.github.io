@@ -260,6 +260,297 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/13/nlp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LIUYI">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LIU YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/13/nlp/" itemprop="url">NLP 四大任务</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-13T12:50:54+01:00">
+                2019-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="序列标注（Sequence-labeling）"><a href="#序列标注（Sequence-labeling）" class="headerlink" title="序列标注（Sequence labeling）"></a>序列标注（Sequence labeling）</h1><h2 id="BIO标注："><a href="#BIO标注：" class="headerlink" title="BIO标注："></a>BIO标注：</h2><p>B — begin, I— inside,  O — outside</p>
+<p> BIO标注：将每个元素标注为“B-X”、“I-X”或者“O”。</p>
+<p>“B-X” : 表示此元素所在的片段属于X类型并且此元素在此片段的开头</p>
+<p>“I-X” : 表示此元素所在的片段属于X类型并且此元素在此片段的中间位置</p>
+<p>“O” : 表示不属于任何类型。</p>
+<h2 id="模型："><a href="#模型：" class="headerlink" title="模型："></a>模型：</h2><h3 id="Bi-LSTM："><a href="#Bi-LSTM：" class="headerlink" title="Bi - LSTM："></a>Bi - LSTM：</h3><p>选择双向LSTM的原因是，当前词的tag和前后文都有关。</p>
+<h2 id="具体任务："><a href="#具体任务：" class="headerlink" title="具体任务："></a>具体任务：</h2><h3 id="分词："><a href="#分词：" class="headerlink" title="分词："></a>分词：</h3><p>输入：word + tag（I：in word；E：end of word）</p>
+<p>输出：tag of word, 标签是E的后面➕空格，就达到了分词的目的</p>
+<h3 id="词性标注（Part-of-Speech-tagging-，POS-tagging-："><a href="#词性标注（Part-of-Speech-tagging-，POS-tagging-：" class="headerlink" title="词性标注（Part-of-Speech tagging ，POS tagging)："></a>词性标注（Part-of-Speech tagging ，POS tagging)：</h3><p>输入：word + tag （词性：动词、名词、形容词等）</p>
+<p>输出：词性</p>
+<p>HMM也可以做</p>
+<h3 id="命名实体标注（name-entity-recognition-NER）："><a href="#命名实体标注（name-entity-recognition-NER）：" class="headerlink" title="命名实体标注（name entity recognition, NER）："></a>命名实体标注（name entity recognition, NER）：</h3><p>输入：word + tag（B: begin of entity,I : inside of entity, o: outside of entity）</p>
+<p>输出：实体标注</p>
+<h3 id="词义角色标注-semantic-role-labeling-SRL-："><a href="#词义角色标注-semantic-role-labeling-SRL-：" class="headerlink" title="词义角色标注  (semantic role labeling, SRL) ："></a>词义角色标注  (semantic role labeling, SRL) ：</h3><p>输入： word + 是不是谓语（B-Argo，I-Argo，BV ）</p>
+<p>输出：语义角色</p>
+<h1 id="分类任务"><a href="#分类任务" class="headerlink" title="分类任务"></a>分类任务</h1><h2 id="具体任务：-1"><a href="#具体任务：-1" class="headerlink" title="具体任务："></a>具体任务：</h2><h3 id="文本分类"><a href="#文本分类" class="headerlink" title="文本分类"></a>文本分类</h3><h3 id="情感分类"><a href="#情感分类" class="headerlink" title="情感分类"></a>情感分类</h3><h2 id="模型：-1"><a href="#模型：-1" class="headerlink" title="模型："></a>模型：</h2><p>LSTM：属于 many- to - one 的问题，最后使用 SoftMax输出分类结果。</p>
+<h1 id="句子关系判断"><a href="#句子关系判断" class="headerlink" title="句子关系判断"></a>句子关系判断</h1><h2 id="具体任务：-2"><a href="#具体任务：-2" class="headerlink" title="具体任务："></a>具体任务：</h2><h3 id="句法分析"><a href="#句法分析" class="headerlink" title="句法分析"></a>句法分析</h3><h3 id="蕴含关系判断（entailment）"><a href="#蕴含关系判断（entailment）" class="headerlink" title="蕴含关系判断（entailment）"></a>蕴含关系判断（entailment）</h3><h2 id="模型：-2"><a href="#模型：-2" class="headerlink" title="模型："></a>模型：</h2><h3 id="语法分析树："><a href="#语法分析树：" class="headerlink" title="语法分析树："></a>语法分析树：</h3><p>使用：LSTM 来对每个edges 算得分，选择得分高的edges，限制是这些edges 必须组成一个树</p>
+<p>RNNGs 也可以做</p>
+<h1 id="生成式任务"><a href="#生成式任务" class="headerlink" title="生成式任务"></a>生成式任务</h1><h2 id="具体任务：-3"><a href="#具体任务：-3" class="headerlink" title="具体任务："></a>具体任务：</h2><h3 id="机器翻译（machine-translation，MT）"><a href="#机器翻译（machine-translation，MT）" class="headerlink" title="机器翻译（machine translation，MT）"></a>机器翻译（machine translation，MT）</h3><p>Encoder-Decoder的最经典应用，事实上这一结构就是在机器翻译领域最先提出的</p>
+<h3 id="文本摘要、总结（summarization）"><a href="#文本摘要、总结（summarization）" class="headerlink" title="文本摘要、总结（summarization）"></a>文本摘要、总结（summarization）</h3><p>输入是一段文本序列，输出是这段文本序列的摘要序列。</p>
+<h3 id="阅读理解"><a href="#阅读理解" class="headerlink" title="阅读理解"></a>阅读理解</h3><p>将输入的文章和问题分别编码，再对其进行解码得到问题的答案。</p>
+<h3 id="语音识别"><a href="#语音识别" class="headerlink" title="语音识别"></a>语音识别</h3><p>输入是语音信号序列，输出是文字序列。</p>
+<h3 id="对话（dialog）"><a href="#对话（dialog）" class="headerlink" title="对话（dialog）"></a>对话（dialog）</h3><p>输入的是一句话，输出是对这句话的回答。</p>
+<h2 id="Seq-2-Seq-模型"><a href="#Seq-2-Seq-模型" class="headerlink" title="Seq-2-Seq 模型:"></a>Seq-2-Seq 模型:</h2><p>大部分自然语言问题都可以使用 seq2seq 解决。所谓Seq2Seq(Sequence to Sequence), 就是<strong>一种能够根据给定的序列，通过特定的方法生成另一个序列的方法</strong></p>
+<p>Seq2Seq模型是RNN最重要的一个变种：N vs M（输入与输出序列长度不同， 这种结构又叫Encoder-Decoder模型。和RNN、LSTM 最大的区别就是这种<strong>Encoder-Decoder结构不限制输入和输出的序列长度</strong>，因此应用的范围非常广泛。</p>
+<p><img src="/Users/liuyi/myBlog/source/images/TIM20180807210133.png" alt></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/13/自然语言处理（NLP）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LIUYI">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LIU YI">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/13/自然语言处理（NLP）/" itemprop="url">NLP发展趋势</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-13T10:26:48+01:00">
+                2019-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="值得关注的NLP的技术："><a href="#值得关注的NLP的技术：" class="headerlink" title="值得关注的NLP的技术："></a>值得关注的NLP的技术：</h1><h2 id="1-预训练神经网络"><a href="#1-预训练神经网络" class="headerlink" title="1.预训练神经网络"></a>1.预训练神经网络</h2><h3 id="常见模型："><a href="#常见模型：" class="headerlink" title="常见模型："></a>常见模型：</h3><p>ELMo、BERT</p>
+<h3 id="需要研究的问题："><a href="#需要研究的问题：" class="headerlink" title="需要研究的问题："></a>需要研究的问题：</h3><ul>
+<li>预训练的语言粒度：word、sub-word、character</li>
+<li>预训练的语言模型的结构：LSTM、Transformer 等</li>
+<li>预训练数据：文本的主题（domain）</li>
+<li>预训练得到模型的应用：怎么应用到不同的任务中</li>
+</ul>
+<h2 id="2-低资源任务："><a href="#2-低资源任务：" class="headerlink" title="2.低资源任务："></a>2.低资源任务：</h2><h3 id="解决方式："><a href="#解决方式：" class="headerlink" title="解决方式："></a>解决方式：</h3><ul>
+<li>无监督，半监督学习</li>
+<li>迁移学习，多任务学习</li>
+</ul>
+<h2 id="3-迁移学习："><a href="#3-迁移学习：" class="headerlink" title="3.迁移学习："></a>3.迁移学习：</h2><h3 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h3><p>不同的nlp任务虽然采用不同类型的数据进行模型的训练，但是在encoder 端的编码往往是同构的，都是将输入的词、句编码为对应的向量表示，然后不同的任务使用不同的解码器完成decoder。</p>
+<h3 id="做法："><a href="#做法：" class="headerlink" title="做法："></a>做法：</h3><p>将不同任务训练得到的编码器看作是不同任务对应的一种向量表示模型，然后通过迁移学习 (Transfer Learning )的方式将这类信息迁移到目标任务上来。</p>
+<h2 id="4-多任务学习"><a href="#4-多任务学习" class="headerlink" title="4.多任务学习:"></a>4.多任务学习:</h2><p>Multi-task Learning 可以通过端到端的方式，直接在主任务中引入其他辅助任务的监督信息，用于<strong>保证模型能够学到不同任务间共享的额知识和信息</strong></p>
+<h2 id="5-多模态学习："><a href="#5-多模态学习：" class="headerlink" title="5.多模态学习："></a>5.多模态学习：</h2><p>文本数据和语音、图像数据的多模态融合是未来机器人的刚需。</p>
+<p>在神经网络的框架下，可以用统一的模式来对多模态（语言、文字、图像、视频）进行建模（编码和解码），从而实现端到端的学习。</p>
+<ul>
+<li><h3 id="视觉问答："><a href="#视觉问答：" class="headerlink" title="视觉问答："></a>视觉问答：</h3></li>
+</ul>
+<p>​        基于问题生成的视觉问答方法</p>
+<p>​        基于场景图生成的视觉问答方法</p>
+<ul>
+<li><h3 id="视频问答"><a href="#视频问答" class="headerlink" title="视频问答"></a>视频问答</h3></li>
+</ul>
+<h2 id="6-知识及常识的引入："><a href="#6-知识及常识的引入：" class="headerlink" title="6.知识及常识的引入："></a>6.知识及常识的引入：</h2><p>将知识和常识引入到目前基于数据的学习模型中</p>
+<h3 id="应用："><a href="#应用：" class="headerlink" title="应用："></a>应用：</h3><p>机器阅读理解、语义理解</p>
+<h3 id="领域知识："><a href="#领域知识：" class="headerlink" title="领域知识："></a>领域知识：</h3><p>维基百科，知识图谱</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/11/二叉树/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1040,7 +1331,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1053,7 +1344,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
