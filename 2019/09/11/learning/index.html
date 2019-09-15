@@ -88,7 +88,7 @@
 <meta property="og:description" content="机器学习相关问题：梯度消失爆炸的根本原因是反向传播训练法则，前面层上的梯度是后面层上梯度的乘积。 神经网络训练中，通过改变神经元的权重，使网络的输出值尽可能逼近标签以降低误差值，根据损失函数计算的误差通过梯度反向传播的方式，指导深度网络权值的更新优化。训练普遍使用BP算法，核心思想是，计算输出值与标签值之间的损失函数值，然后计算其相对于每个神经元的梯度，进行权值的迭代。 梯度消失和梯度爆炸：在反向">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/Users/liuyi/myBlog/source/images/1.png">
-<meta property="og:updated_time" content="2019-09-11T08:08:42.134Z">
+<meta property="og:updated_time" content="2019-09-11T08:11:47.968Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="machinge learning">
 <meta name="twitter:description" content="机器学习相关问题：梯度消失爆炸的根本原因是反向传播训练法则，前面层上的梯度是后面层上梯度的乘积。 神经网络训练中，通过改变神经元的权重，使网络的输出值尽可能逼近标签以降低误差值，根据损失函数计算的误差通过梯度反向传播的方式，指导深度网络权值的更新优化。训练普遍使用BP算法，核心思想是，计算输出值与标签值之间的损失函数值，然后计算其相对于每个神经元的梯度，进行权值的迭代。 梯度消失和梯度爆炸：在反向">
@@ -352,7 +352,7 @@
 <li><h4 id="relu、leakrelu、elu等激活函数"><a href="#relu、leakrelu、elu等激活函数" class="headerlink" title="relu、leakrelu、elu等激活函数"></a>relu、leakrelu、elu等激活函数</h4><p><strong>Relu</strong>: $y= max(0,x)$,思想就是当激活函数的导数为1，那就不存在梯度消失和爆炸的问题，每层的网络都可以有相同的更新速度。</p>
 <p>优点：解决了梯度爆炸和消失的问题；计算方便，计算速度快；加速了网络的训练。</p>
 <p>缺点：负数部分恒为零，导致一些神经元无法激活（可通过设置小学习率解决）；输出不以0为中心。</p>
-<p>leakrelu就是为了解决relu的0区间带来的影响，其数学表达为：$leakrelu=max(k∗x,x)$，其中k是leak系数，一般选择0.01或者0.02，或者通过学习</p>
+<p>leakrelu就是为了解决relu的0区间带来的影响，其数学表达为：$leakrelu=max(k∗x,x)$，其中k是leak系数，一般选择0.01或者0.02，或者通过学习而来。</p>
 <p><img src="/Users/liuyi/myBlog/source/images/1.png" alt></p>
 </li>
 </ul>

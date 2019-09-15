@@ -351,7 +351,7 @@
 <li><h4 id="relu、leakrelu、elu等激活函数"><a href="#relu、leakrelu、elu等激活函数" class="headerlink" title="relu、leakrelu、elu等激活函数"></a>relu、leakrelu、elu等激活函数</h4><p><strong>Relu</strong>: $y= max(0,x)$,思想就是当激活函数的导数为1，那就不存在梯度消失和爆炸的问题，每层的网络都可以有相同的更新速度。</p>
 <p>优点：解决了梯度爆炸和消失的问题；计算方便，计算速度快；加速了网络的训练。</p>
 <p>缺点：负数部分恒为零，导致一些神经元无法激活（可通过设置小学习率解决）；输出不以0为中心。</p>
-<p>leakrelu就是为了解决relu的0区间带来的影响，其数学表达为：$leakrelu=max(k∗x,x)$，其中k是leak系数，一般选择0.01或者0.02，或者通过学习</p>
+<p>leakrelu就是为了解决relu的0区间带来的影响，其数学表达为：$leakrelu=max(k∗x,x)$，其中k是leak系数，一般选择0.01或者0.02，或者通过学习而来。</p>
 <p><img src="/Users/liuyi/myBlog/source/images/1.png" alt></p>
 </li>
 </ul>
