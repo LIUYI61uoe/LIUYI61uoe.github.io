@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="LIU YI">
 <meta property="og:description" content="最长公共子序列（LCS）这个是用于计算重复率 给定两个字符串str1和str2，输出连个字符串的最长公共子序列。如过最长公共子序列为空，则输出-1。 输入121A2C3D4B56B1D23CA45B6A  输出1&quot;123456&quot;和“12C4B6”都是最长公共子序列，任意输出一个。  1234567891011121314def lcs(s1,s2):    matrix = [[&quot;&quot;for i i">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-17T10:08:25.790Z">
+<meta property="og:updated_time" content="2019-09-18T02:27:44.529Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LCS">
 <meta name="twitter:description" content="最长公共子序列（LCS）这个是用于计算重复率 给定两个字符串str1和str2，输出连个字符串的最长公共子序列。如过最长公共子序列为空，则输出-1。 输入121A2C3D4B56B1D23CA45B6A  输出1&quot;123456&quot;和“12C4B6”都是最长公共子序列，任意输出一个。  1234567891011121314def lcs(s1,s2):    matrix = [[&quot;&quot;for i i">
@@ -351,6 +351,20 @@
 
 <p>最长公共子序列是要把元素记录下来</p>
 <p>最长公共子串是要把最后的公共位置记录下来和最大长度</p>
+<h2 id="矩阵的最小路径和"><a href="#矩阵的最小路径和" class="headerlink" title="矩阵的最小路径和"></a>矩阵的最小路径和</h2><p>给定一个 n * m 的矩阵 a，从左上角开始每次只能向右或者向下走，最后到达右下角的位置，路径上所有的数字累加起来就是路径和，输出所有的路径中最小的路径和。</p>
+<h5 id="输入-2"><a href="#输入-2" class="headerlink" title="输入"></a>输入</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">n=4 m=4</span><br><span class="line">1 3 5 9</span><br><span class="line">8 1 3 4</span><br><span class="line">5 0 6 1</span><br><span class="line">8 8 4 0</span><br></pre></td></tr></table></figure>
+
+<h5 id="输出-2"><a href="#输出-2" class="headerlink" title="输出"></a>输出</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">12</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">short</span><span class="params">(arr,n,m)</span>:</span></span><br><span class="line">    dp = arr[<span class="number">0</span>] <span class="comment">#和每一行尺寸一样</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,m):</span><br><span class="line">        dp[i] += dp[i<span class="number">-1</span>] <span class="comment">#对第一行进行初始化，后面的等于当前加上前面一个</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,n):</span><br><span class="line">        dp[<span class="number">0</span>] += arr[i][<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,m):</span><br><span class="line">            dp[j] = min(dp[j<span class="number">-1</span>],dp[j])+arr[i][j]<span class="comment">#dp[j]存储的是从上面到下面的值；dp[j-1]存储的是从前面到后面的值</span></span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">-1</span>]</span><br><span class="line">            </span><br><span class="line">n,m = map(int,input().split())</span><br><span class="line">arr = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    arr.append(list(map(int,input().split())))</span><br><span class="line"><span class="keyword">print</span> (short(arr,n,m))</span><br></pre></td></tr></table></figure>
+
+<h2 id="最小编辑代价"><a href="#最小编辑代价" class="headerlink" title="最小编辑代价"></a>最小编辑代价</h2><p>给定两个字符串str1和str2，再给定三个整数ic，dc和rc，分别代表插入、删除和替换一个字符的代价，请输出将str1编辑成str2的最小代价。</p>
+<h5 id="输入-3"><a href="#输入-3" class="headerlink" title="输入"></a>输入</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">abc</span><br><span class="line">adc</span><br><span class="line">5 3 2</span><br></pre></td></tr></table></figure>
+
+<h5 id="输出-3"><a href="#输出-3" class="headerlink" title="输出"></a>输出</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">minCost</span><span class="params">(s1,s2,ic,dc,rc)</span>:</span> <span class="comment">#s1行，s2列</span></span><br><span class="line">    n = len(s1)</span><br><span class="line">    m = len(s2)</span><br><span class="line">    dp = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(m+<span class="number">1</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> range(n+<span class="number">1</span>)]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>):<span class="comment">#初始化第一列,就是s1为0时，插入s2中的元素</span></span><br><span class="line">        dp[i][<span class="number">0</span>] = dp[i<span class="number">-1</span>][<span class="number">0</span>]+ ic</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,m+<span class="number">1</span>):<span class="comment">#初始化第一行，s2为0时，删除s1中的元素</span></span><br><span class="line">        dp[<span class="number">0</span>][i] = dp[<span class="number">0</span>][i<span class="number">-1</span>]+dc</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,m+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> s1[i<span class="number">-1</span>] == s2[j<span class="number">-1</span>]:</span><br><span class="line">                dp[i][j] = dp[i<span class="number">-1</span>][j<span class="number">-1</span>]<span class="comment">#相等时不需要任何代价</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                dp[i][j] = min(dp[i<span class="number">-1</span>][j<span class="number">-1</span>]+rc,min(dp[i<span class="number">-1</span>][j]+dc,dp[i][j<span class="number">-1</span>]+ic))<span class="comment">#有三种操作，选择代价最小的一个</span></span><br><span class="line">    <span class="keyword">return</span> dp[n][m]</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -375,8 +389,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/11/learning/" rel="next" title="机器学习有关问题">
-                <i class="fa fa-chevron-left"></i> 机器学习有关问题
+              <a href="/2019/09/15/basic/" rel="next" title="机器学习基础知识">
+                <i class="fa fa-chevron-left"></i> 机器学习基础知识
               </a>
             
           </div>
@@ -384,6 +398,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/06/python/" rel="prev" title="python学习">
+                python学习 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -460,7 +478,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -522,7 +540,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#最长公共子序列（LCS）"><span class="nav-number">1.</span> <span class="nav-text">最长公共子序列（LCS）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#输入"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输出"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">输出</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#最长公共子串"><span class="nav-number">2.</span> <span class="nav-text">最长公共子串</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#输入-1"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输出-1"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">输出</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#最长公共子序列（LCS）"><span class="nav-number">1.</span> <span class="nav-text">最长公共子序列（LCS）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#输入"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输出"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">输出</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#最长公共子串"><span class="nav-number">2.</span> <span class="nav-text">最长公共子串</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#输入-1"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输出-1"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">输出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的最小路径和"><span class="nav-number">3.</span> <span class="nav-text">矩阵的最小路径和</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#输入-2"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输出-2"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">输出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小编辑代价"><span class="nav-number">4.</span> <span class="nav-text">最小编辑代价</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#输入-3"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输出-3"><span class="nav-number">4.0.0.2.</span> <span class="nav-text">输出</span></a></li></ol></li></div>
             
 
           </div>
@@ -542,7 +560,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
